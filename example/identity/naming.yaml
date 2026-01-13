@@ -1,0 +1,156 @@
+# Naming Conventions
+# Guidelines for naming products, features, and projects
+
+products:
+  description: "Rules for naming products and services"
+  
+  pattern: "[Brand] [Descriptor]"
+  
+  rules:
+    - "Use title case"
+    - "Maximum 3 words"
+    - "Avoid generic terms alone (e.g., 'Platform')"
+    - "Ensure name is trademarkable"
+    - "Check domain availability"
+    - "Test for unintended meanings in target markets"
+    
+  structure:
+    brand_name: "Always include brand name for external products"
+    descriptor: "Clear, benefit-oriented descriptor"
+    
+  examples:
+    good:
+      - name: "Acme Analytics"
+        reason: "Clear brand + descriptive function"
+      - name: "Acme Cloud Platform"
+        reason: "Brand + technology type"
+      - name: "Acme Connect"
+        reason: "Brand + action-oriented name"
+        
+    bad:
+      - name: "acme analytics"
+        reason: "Incorrect capitalization"
+      - name: "The Acme Super Amazing Analytics Platform Pro"
+        reason: "Too long, too many modifiers"
+      - name: "Analytics"
+        reason: "Missing brand, too generic"
+      - name: "AcmeAnalytics"
+        reason: "Missing space, hard to read"
+
+features:
+  description: "Rules for naming product features"
+  
+  pattern: "[Action/Noun] [Descriptor]"
+  
+  rules:
+    - "Use sentence case"
+    - "Be descriptive, not clever"
+    - "Avoid trademarking feature names"
+    - "Keep to 2-3 words maximum"
+    - "Use consistent naming patterns across product"
+    
+  examples:
+    good:
+      - name: "Smart scheduling"
+        reason: "Clear function, sentence case"
+      - name: "Team dashboard"
+        reason: "Descriptive, easy to understand"
+      - name: "One-click export"
+        reason: "Action-oriented, clear benefit"
+        
+    bad:
+      - name: "SmartSched™"
+        reason: "Unnecessary trademark, awkward abbreviation"
+      - name: "The Hub"
+        reason: "Vague, doesn't describe function"
+      - name: "MEGA DASHBOARD PRO"
+        reason: "All caps, hyperbolic"
+
+internal_projects:
+  description: "Codenames for internal projects"
+  
+  pattern: "[Single Codename]"
+  
+  rules:
+    - "Use nature, mythology, or space themes"
+    - "Single word preferred"
+    - "Easy to pronounce and spell"
+    - "Not offensive in any language"
+    - "Don't reuse recently used codenames"
+    
+  theme_options:
+    - category: "Celestial"
+      examples: ["Apollo", "Nova", "Orion", "Nebula"]
+    - category: "Nature"
+      examples: ["Sequoia", "Everest", "Aurora", "Cascade"]
+    - category: "Mythology"
+      examples: ["Phoenix", "Atlas", "Titan", "Mercury"]
+      
+  examples:
+    good:
+      - "Phoenix"
+      - "Cascade"
+      - "Horizon"
+    bad:
+      - "Project X"
+      - "New Platform Thing"
+      - "Bob's Project"
+
+campaigns:
+  description: "Marketing campaign naming"
+  
+  rules:
+    - "Reflect campaign theme or message"
+    - "Be memorable and distinctive"
+    - "Check for conflicts with competitors"
+    - "Consider hashtag potential"
+    
+  examples:
+    good:
+      - name: "Future Forward"
+        type: "Innovation campaign"
+      - name: "Connect 2025"
+        type: "Annual conference"
+        
+documents:
+  description: "Document and file naming"
+  
+  pattern: "[Type]-[Subject]-[Version/Date]"
+  
+  rules:
+    - "Use hyphens, not spaces"
+    - "Include version or date for tracking"
+    - "Keep under 50 characters"
+    - "Use lowercase for file names"
+    
+  examples:
+    good:
+      - "proposal-client-name-v2.pdf"
+      - "presentation-quarterly-review-2025-01.pptx"
+      - "guide-onboarding-v1.2.pdf"
+      
+    bad:
+      - "Final FINAL v3 (2).pdf"
+      - "Document.pdf"
+      - "John's presentation for the big meeting on Tuesday.pptx"
+
+urls_and_slugs:
+  description: "URL and slug conventions"
+  
+  rules:
+    - "Use lowercase only"
+    - "Use hyphens to separate words"
+    - "Keep short and descriptive"
+    - "Avoid special characters"
+    - "Include keywords for SEO"
+    
+  examples:
+    good:
+      - "/products/analytics-platform"
+      - "/blog/getting-started-guide"
+      - "/about/our-team"
+      
+    bad:
+      - "/Products/Analytics_Platform"
+      - "/blog/post123"
+      - "/p?id=456"

@@ -1,0 +1,266 @@
+# Voice and Tone Guidelines
+# Machine-readable writing style rules
+
+voice:
+  description: "How we sound across all communications"
+  
+  core_attributes:
+    - "Professional but approachable"
+    - "Confident without arrogance"
+    - "Clear and direct"
+    - "Expert but accessible"
+    - "Helpful and solution-oriented"
+  
+  we_sound_like:
+    - "A knowledgeable colleague who wants to help"
+    - "A trusted advisor who explains things clearly"
+    - "An expert who respects your intelligence"
+    
+  we_dont_sound_like:
+    - "A corporate robot reciting scripts"
+    - "A condescending professor"
+    - "An aggressive salesperson"
+    - "A vague consultant hiding behind jargon"
+
+tone_by_context:
+  formal:
+    description: "Reserved, authoritative, precise"
+    use_for:
+      - "Legal documents"
+      - "Annual reports"
+      - "Investor communications"
+      - "Contracts and agreements"
+      - "Regulatory filings"
+    characteristics:
+      - "Authoritative"
+      - "Precise"
+      - "Conservative"
+      - "Measured"
+    rules:
+      contractions: false
+      colloquialisms: false
+      humor: false
+      rhetorical_questions: false
+      exclamation_marks: false
+      emoji: false
+      sentence_length: "medium_to_long"
+      paragraph_length: "3-5 sentences"
+    vocabulary:
+      prefer:
+        - "shall" over "will"
+        - "pursuant to" over "according to"
+      avoid:
+        - Casual language
+        - Abbreviations (spell out)
+    examples:
+      good: "The Company shall maintain compliance with all applicable regulations."
+      bad: "We'll make sure we follow the rules!"
+
+  professional:
+    description: "Confident, knowledgeable, engaging"
+    use_for:
+      - "Presentations"
+      - "Proposals"
+      - "White papers"
+      - "Case studies"
+      - "Product documentation"
+    characteristics:
+      - "Confident"
+      - "Knowledgeable"
+      - "Engaging"
+      - "Clear"
+    rules:
+      contractions: "limited"
+      colloquialisms: false
+      humor: "subtle_if_appropriate"
+      rhetorical_questions: "occasional"
+      exclamation_marks: "rare"
+      emoji: false
+      sentence_length: "varied"
+      paragraph_length: "2-4 sentences"
+    vocabulary:
+      prefer:
+        - "solution" over "product"
+        - "partner" over "customer"
+        - "team member" over "employee"
+      avoid:
+        - "Synergy"
+        - "Leverage" (as verb)
+        - "Best-in-class"
+        - "Revolutionary"
+    examples:
+      good: "Our platform addresses three critical challenges facing modern enterprises: scalability, security, and integration complexity."
+      bad: "Our revolutionary, best-in-class solution will synergistically transform your business!"
+
+  conversational:
+    description: "Warm, helpful, accessible"
+    use_for:
+      - "Blog posts"
+      - "Social media"
+      - "Email newsletters"
+      - "Customer support"
+      - "Internal communications"
+    characteristics:
+      - "Warm"
+      - "Helpful"
+      - "Accessible"
+      - "Friendly"
+    rules:
+      contractions: true
+      colloquialisms: "moderate"
+      humor: "appropriate"
+      rhetorical_questions: true
+      exclamation_marks: "sparingly"
+      emoji: "context_dependent"
+      sentence_length: "short_to_medium"
+      paragraph_length: "1-3 sentences"
+    vocabulary:
+      prefer:
+        - "you" over "users"
+        - "we" over "the company"
+        - "help" over "assist"
+      avoid:
+        - Jargon without explanation
+        - Overly technical terms
+    examples:
+      good: "Ever wondered how to get more from your data? Here are five tips that actually work."
+      bad: "Users may leverage our platform's capabilities to optimize their data utilization strategies."
+
+  urgent:
+    description: "Direct, clear, action-oriented"
+    use_for:
+      - "Security alerts"
+      - "System notifications"
+      - "Error messages"
+      - "Critical updates"
+    characteristics:
+      - "Direct"
+      - "Clear"
+      - "Action-oriented"
+      - "Calm but serious"
+    rules:
+      contractions: true
+      sentence_length: "short"
+      include_action: true
+    examples:
+      good: "Your session will expire in 5 minutes. Save your work now."
+      bad: "Please be advised that the system has detected an imminent session termination event."
+
+writing_rules:
+  grammar:
+    active_voice: "preferred"
+    passive_voice: "use sparingly, only when actor is unknown or unimportant"
+    oxford_comma: true
+    sentence_fragments: "avoid in formal, ok in conversational"
+    
+  punctuation:
+    periods: "Use consistently"
+    exclamation_marks: "Maximum one per message, avoid in formal contexts"
+    question_marks: "Use for genuine questions, not rhetorical in formal"
+    ellipsis: "Avoid except in quoted material"
+    semicolons: "Use sparingly, prefer shorter sentences"
+    
+  capitalization:
+    headings: "Title Case for H1, Sentence case for H2+"
+    product_names: "Always capitalize"
+    features: "Sentence case"
+    
+  numbers:
+    spell_out: "one through ten"
+    use_numerals: "11 and above"
+    exceptions:
+      - "Always numerals for: percentages, measurements, dates, times"
+      - "Always spell out: starting a sentence"
+      
+  dates_times:
+    date_format: "Month D, YYYY (January 15, 2025)"
+    date_format_short: "MM/DD/YYYY"
+    time_format: "12-hour with am/pm (2:30 pm)"
+    timezone: "Always specify when relevant"
+
+vocabulary_guidelines:
+  preferred_terms:
+    - use: "solution"
+      instead_of: "product"
+      reason: "Emphasizes value over features"
+      
+    - use: "partner"
+      instead_of: "customer"
+      reason: "Emphasizes relationship"
+      
+    - use: "team member"
+      instead_of: "employee"
+      reason: "More inclusive"
+      
+    - use: "challenge"
+      instead_of: "problem"
+      reason: "More positive framing"
+      
+    - use: "opportunity"
+      instead_of: "issue"
+      reason: "Solution-oriented mindset"
+      
+  avoid_words:
+    - word: "synergy"
+      reason: "Overused corporate jargon"
+      
+    - word: "leverage" 
+      as: "verb"
+      reason: "Corporate speak; use 'use' or 'apply'"
+      
+    - word: "disrupt"
+      reason: "Overused, aggressive connotation"
+      
+    - word: "revolutionary"
+      reason: "Hyperbolic, loses meaning"
+      
+    - word: "best-in-class"
+      reason: "Unsubstantiated claim"
+      
+    - word: "utilize"
+      reason: "Unnecessarily complex; use 'use'"
+      
+    - word: "facilitate"
+      reason: "Vague; be specific about action"
+      
+  jargon_policy:
+    rule: "Explain technical terms on first use"
+    example: "Machine learning (ML) — a type of artificial intelligence that learns from data — powers our recommendation engine."
+
+content_structure:
+  headlines:
+    max_words: 8
+    style: "Benefit-focused, action-oriented"
+    capitalization: "Title Case"
+    punctuation: "No period"
+    examples:
+      good:
+        - "Streamline Your Operations Today"
+        - "Five Ways to Boost Productivity"
+      bad:
+        - "Acme Corporation Announces Revolutionary New Best-in-Class Enterprise Solution"
+        - "Read This Article About Our Products"
+        
+  paragraphs:
+    ideal_sentences: "3-4"
+    max_sentences: 5
+    first_sentence: "Hook with benefit or insight"
+    last_sentence: "Call to action or forward look"
+    
+  bullet_points:
+    max_items: 6
+    max_words_per_item: 15
+    parallel_structure: true
+    punctuation: "No periods unless full sentences"
+    
+  calls_to_action:
+    style: "Clear, specific, action-oriented"
+    examples:
+      good:
+        - "Start your free trial"
+        - "Download the guide"
+        - "Schedule a demo"
+      bad:
+        - "Click here"
+        - "Learn more"
+        - "Submit"

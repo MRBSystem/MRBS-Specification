@@ -1,0 +1,281 @@
+# Brand Constraints
+# Machine-readable do's and don'ts
+
+logo:
+  description: "Rules for logo usage"
+  
+  variants:
+    available:
+      - id: "primary"
+        file: "primary.svg"
+        usage: "Default for light backgrounds"
+      - id: "reversed"
+        file: "reversed.svg"
+        usage: "For dark backgrounds (luminance < 0.5)"
+      - id: "monochrome"
+        file: "monochrome.svg"
+        usage: "Single-color applications"
+      - id: "icon"
+        file: "icon.svg"
+        usage: "Favicon, app icons, small spaces"
+        
+  minimum_sizes:
+    digital:
+      full_logo: "40px height"
+      icon_only: "24px"
+    print:
+      full_logo: "15mm height"
+      icon_only: "8mm"
+      
+  clear_space:
+    measurement: "Height of the logo mark"
+    minimum: "1x on all sides"
+    description: "No other elements may enter this zone"
+    
+  backgrounds:
+    approved:
+      - "White (#FFFFFF)"
+      - "Light gray (#F5F5F5 or lighter)"
+      - "Brand primary (use reversed logo)"
+      - "Dark backgrounds (use reversed logo)"
+    prohibited:
+      - "Busy patterns or textures"
+      - "Low contrast colors"
+      - "Competing graphics or imagery"
+      - "Gradients that reduce readability"
+      
+  do:
+    - "Use only approved logo files"
+    - "Maintain original aspect ratio"
+    - "Ensure adequate contrast with background"
+    - "Use reversed version on dark backgrounds"
+    - "Maintain minimum clear space"
+    - "Use appropriate size variant for context"
+    
+  dont:
+    - "Rotate or skew the logo"
+    - "Add shadows, glows, or outlines"
+    - "Alter or substitute colors"
+    - "Place on busy or low-contrast backgrounds"
+    - "Stretch or compress"
+    - "Crop or mask any part"
+    - "Recreate or redraw"
+    - "Add additional elements"
+    - "Use outdated versions"
+
+colors:
+  description: "Rules for color usage"
+  
+  primary_color:
+    usage:
+      recommended:
+        - "Headings and titles"
+        - "Call-to-action buttons"
+        - "Links"
+        - "Icons and accents"
+      allowed:
+        - "Borders"
+        - "Small decorative elements"
+      prohibited:
+        - "Body text (use neutral-900)"
+        - "Large background areas"
+        - "With insufficient contrast"
+        
+  combinations:
+    approved:
+      - foreground: "primary"
+        background: "white"
+        usage: "Standard content, buttons"
+        contrast_ratio: 4.8
+        
+      - foreground: "white"
+        background: "primary"
+        usage: "Inverse buttons, headers"
+        contrast_ratio: 4.8
+        
+      - foreground: "neutral-900"
+        background: "white"
+        usage: "Body text"
+        contrast_ratio: 16.1
+        
+      - foreground: "neutral-700"
+        background: "white"
+        usage: "Secondary text"
+        contrast_ratio: 5.9
+        
+    prohibited:
+      - colors: ["primary", "secondary"]
+        reason: "Insufficient contrast, visual conflict"
+        
+      - colors: ["secondary", "warning"]
+        reason: "Similar hues create confusion"
+        
+      - colors: ["neutral-500", "white"]
+        reason: "Does not meet WCAG AA contrast (3.9:1)"
+        
+  usage_limits:
+    secondary: "≤15% of any design surface"
+    description: "Secondary color is an accent; overuse diminishes impact"
+    
+  do:
+    - "Use primary color for brand elements"
+    - "Verify contrast meets WCAG AA (4.5:1 for text)"
+    - "Use semantic colors consistently (success=green, error=red)"
+    - "Test colors in both light and dark contexts"
+    
+  dont:
+    - "Use primary color for body text"
+    - "Pair primary and secondary directly"
+    - "Use color alone to convey meaning"
+    - "Override semantic color meanings"
+    - "Use brand colors for error states"
+
+typography:
+  description: "Rules for typography usage"
+  
+  font_pairing:
+    rule: "Maximum 2 font families in any design"
+    primary: "heading_font for headings only"
+    secondary: "body_font for all other text"
+    
+  hierarchy:
+    rule: "Maintain clear visual hierarchy"
+    levels:
+      - "H1: Page/slide titles"
+      - "H2: Major sections"
+      - "H3: Subsections"
+      - "H4: Minor headings"
+      - "Body: Main content"
+      - "Small/Caption: Supporting text"
+      
+  do:
+    - "Use heading font for headings only"
+    - "Maintain consistent size hierarchy"
+    - "Use adequate line height (1.4-1.6 for body)"
+    - "Left-align body text"
+    - "Use sufficient contrast"
+    - "Allow adequate whitespace"
+    
+  dont:
+    - "Mix more than 2 font families"
+    - "Use heading font for body text"
+    - "Use decorative or script fonts"
+    - "Justify body text"
+    - "Use ALL CAPS for more than 3 words"
+    - "Use text smaller than 14px for body"
+    - "Stretch or compress type"
+    - "Use low-contrast text colors"
+
+imagery:
+  description: "Rules for photography and graphics"
+  
+  photography_style:
+    preferred:
+      - "Natural, authentic lighting"
+      - "Genuine moments and expressions"
+      - "Diverse representation"
+      - "Clean, uncluttered compositions"
+      - "Relevant to content and context"
+      
+    avoid:
+      - "Overly staged or stock-looking images"
+      - "Heavy filters or artificial color grading"
+      - "Isolated subjects on pure white"
+      - "Clichéd or generic stock imagery"
+      - "Low resolution or pixelated images"
+      - "Watermarked or unlicensed images"
+      
+  treatments:
+    allowed:
+      - "Light color correction for consistency"
+      - "Cropping within composition guidelines"
+      - "Brand color overlay (30% max opacity)"
+      - "Subtle gradient overlays"
+      
+    prohibited:
+      - "Heavy vignettes"
+      - "Artificial lens flares"
+      - "HDR or oversaturated effects"
+      - "Excessive manipulation"
+      - "Adding brand elements directly on faces"
+      
+  technical:
+    minimum_resolution:
+      print: "300 dpi"
+      web: "72 dpi, 2x for retina"
+    color_space:
+      web: "sRGB"
+      print: "CMYK"
+    formats:
+      preferred: ["jpg", "png", "svg"]
+      avoid: ["bmp", "gif for photos"]
+
+presentations:
+  description: "Rules for presentation design"
+  
+  structure:
+    required:
+      first_slide: "title"
+      last_slide: "closing"
+    recommended:
+      section_divider_frequency: "every 4-6 content slides"
+      
+  content_limits:
+    max_bullets_per_slide: 6
+    max_words_per_bullet: 15
+    max_words_per_slide: 75
+    min_font_size: "14pt"
+    
+  principles:
+    - rule: "one_idea_per_slide"
+      description: "Each slide should convey a single main point"
+      
+    - rule: "less_is_more"
+      description: "Prefer visuals over text when possible"
+      
+    - rule: "data_needs_source"
+      description: "All external data must cite its source"
+      
+    - rule: "consistent_styling"
+      description: "Use template layouts; don't create custom styles"
+      
+  do:
+    - "Use template layouts consistently"
+    - "Keep text concise and scannable"
+    - "Use high-quality, relevant images"
+    - "Maintain consistent alignment"
+    - "Include speaker notes for context"
+    - "Cite data sources"
+    
+  dont:
+    - "Overcrowd slides with text"
+    - "Use more than 6 bullet points"
+    - "Mix multiple fonts beyond brand fonts"
+    - "Use clip art or low-quality images"
+    - "Read slides verbatim (use notes)"
+    - "Skip the title slide"
+
+documents:
+  description: "Rules for document design"
+  
+  margins:
+    standard: "1 inch (25.4mm) all sides"
+    minimum: "0.75 inch (19mm)"
+    
+  headers_footers:
+    header: "Document title or section name"
+    footer: "Page number, date, confidentiality if needed"
+    
+  do:
+    - "Use consistent heading hierarchy"
+    - "Include page numbers for multi-page docs"
+    - "Use adequate margins"
+    - "Break up long text with headings"
+    - "Use bullet points for lists (max 6)"
+    
+  dont:
+    - "Use multiple font families beyond brand fonts"
+    - "Create dense walls of text"
+    - "Use decorative fonts"
+    - "Skip heading levels (H1 → H3)"
+    - "Use excessive bold or italics"

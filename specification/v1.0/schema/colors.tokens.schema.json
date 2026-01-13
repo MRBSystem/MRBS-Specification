@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mrbs.dev/schema/v1/colors.tokens.json",
+  "title": "MRBS Color Tokens",
+  "description": "Color definitions with semantic metadata for AI consumption",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "color": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "$ref": "#/$defs/colorGroup"
+        },
+        "neutral": {
+          "$ref": "#/$defs/colorGroup"
+        },
+        "semantic": {
+          "$ref": "#/$defs/colorGroup"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/colorGroup"
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "min_contrast_text": {
+          "type": "number",
+          "minimum": 1
+        },
+        "min_contrast_large_text": {
+          "type": "number",
+          "minimum": 1
+        },
+        "tested_combinations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/testedCombination"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "colorGroup": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/colorToken"
+      }
+    },
+    "colorToken": {
+      "type": "object",
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "Color value (hex, rgb, or reference)"
+        },
+        "$type": {
+          "type": "string",
+          "const": "color"
+        },
+        "semantic_role": {
+          "type": "string",
+          "description": "The semantic purpose of this color"
+        },
+        "role": {
+          "type": "string",
+          "description": "Short role description"
+        },
+        "usage": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            {
+              "type": "object",
+              "properties": {
+                "recommended": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "allowed": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "prohibited": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "limit": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        },
+        "pairing": {
+          "type": "object",
+          "properties": {
+            "approved_backgrounds": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "prohibited_pairs": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        },
+        "accessibility": {
+          "type": "object",
+          "properties": {
+            "wcag_level": {
+              "type": "string",
+              "enum": ["A", "AA", "AAA"]
+            },
+            "min_contrast_ratio": {
+              "type": "number"
+            },
+            "tested_combinations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/testedCombination"
+              }
+            }
+          }
+        },
+        "emotional_association": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "variants": {
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        }
+      }
+    },
+    "testedCombination": {
+      "type": "object",
+      "properties": {
+        "foreground": {"type": "string"},
+        "background": {"type": "string"},
+        "ratio": {"type": "number"},
+        "passes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["A", "AA", "AAA"]
+          }
+        }
+      }
+    }
+  }
+}

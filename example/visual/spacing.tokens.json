@@ -1,0 +1,81 @@
+{
+  "$schema": "https://mrbs.dev/schema/v1/spacing.tokens.json",
+  "spacing": {
+    "base_unit": {
+      "$value": "8px",
+      "$type": "dimension",
+      "description": "Base spacing unit - all spacing derives from this"
+    },
+    "scale": {
+      "0": {"$value": "0", "multiplier": 0},
+      "xs": {"$value": "4px", "multiplier": 0.5, "usage": "tight_inline_spacing"},
+      "sm": {"$value": "8px", "multiplier": 1, "usage": "compact_spacing"},
+      "md": {"$value": "16px", "multiplier": 2, "usage": "default_spacing"},
+      "lg": {"$value": "24px", "multiplier": 3, "usage": "comfortable_spacing"},
+      "xl": {"$value": "32px", "multiplier": 4, "usage": "generous_spacing"},
+      "2xl": {"$value": "48px", "multiplier": 6, "usage": "section_spacing"},
+      "3xl": {"$value": "64px", "multiplier": 8, "usage": "major_section_spacing"},
+      "4xl": {"$value": "96px", "multiplier": 12, "usage": "page_level_spacing"}
+    },
+    "semantic": {
+      "page_margin": {
+        "$value": "{spacing.scale.xl}",
+        "responsive": {
+          "mobile": "{spacing.scale.md}",
+          "tablet": "{spacing.scale.lg}",
+          "desktop": "{spacing.scale.xl}"
+        }
+      },
+      "section_gap": {
+        "$value": "{spacing.scale.3xl}",
+        "description": "Space between major page sections"
+      },
+      "card_padding": {
+        "$value": "{spacing.scale.lg}",
+        "description": "Internal padding for cards"
+      },
+      "card_gap": {
+        "$value": "{spacing.scale.md}",
+        "description": "Space between cards in a grid"
+      },
+      "element_gap": {
+        "$value": "{spacing.scale.md}",
+        "description": "Space between related elements"
+      },
+      "inline_gap": {
+        "$value": "{spacing.scale.sm}",
+        "description": "Space between inline elements"
+      },
+      "form_field_gap": {
+        "$value": "{spacing.scale.lg}",
+        "description": "Space between form fields"
+      },
+      "button_padding_x": {
+        "$value": "{spacing.scale.lg}",
+        "description": "Horizontal padding inside buttons"
+      },
+      "button_padding_y": {
+        "$value": "{spacing.scale.sm}",
+        "description": "Vertical padding inside buttons"
+      }
+    },
+    "presentation": {
+      "slide_margin": {
+        "$value": "60px",
+        "description": "Margin from slide edge"
+      },
+      "title_content_gap": {
+        "$value": "40px",
+        "description": "Space between slide title and content"
+      },
+      "bullet_gap": {
+        "$value": "16px",
+        "description": "Space between bullet points"
+      },
+      "zone_padding": {
+        "$value": "20px",
+        "description": "Padding inside content zones"
+      }
+    }
+  }
+}

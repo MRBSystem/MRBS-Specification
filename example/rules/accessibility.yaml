@@ -1,0 +1,218 @@
+# Accessibility Guidelines
+# WCAG 2.1 AA compliance requirements
+
+compliance_target:
+  standard: "WCAG 2.1"
+  level: "AA"
+  description: "All brand materials should meet WCAG 2.1 Level AA requirements"
+
+color_contrast:
+  description: "Text and UI elements must have sufficient contrast"
+  
+  normal_text:
+    minimum_ratio: 4.5
+    applies_to: "Text smaller than 18pt (24px) or 14pt (18.5px) bold"
+    test_tool: "WebAIM Contrast Checker"
+    
+  large_text:
+    minimum_ratio: 3.0
+    applies_to: "Text 18pt (24px)+ or 14pt (18.5px)+ bold"
+    
+  ui_components:
+    minimum_ratio: 3.0
+    applies_to: "Buttons, form fields, icons, focus indicators"
+    
+  exceptions:
+    - "Decorative text that conveys no information"
+    - "Logotypes (but should still aim for readability)"
+    - "Incidental text in photographs"
+    
+  tested_combinations:
+    passing:
+      - foreground: "primary (#0066CC)"
+        background: "white (#FFFFFF)"
+        ratio: 4.8
+        result: "AA pass"
+        
+      - foreground: "neutral-900 (#212121)"
+        background: "white (#FFFFFF)"
+        ratio: 16.1
+        result: "AAA pass"
+        
+      - foreground: "neutral-700 (#616161)"
+        background: "white (#FFFFFF)"
+        ratio: 5.9
+        result: "AA pass"
+        
+    failing:
+      - foreground: "neutral-500 (#9E9E9E)"
+        background: "white (#FFFFFF)"
+        ratio: 3.9
+        result: "AA fail"
+        note: "Do not use for text"
+
+typography:
+  minimum_sizes:
+    body_text: "16px (1rem)"
+    small_text: "14px (0.875rem)"
+    caption: "12px (0.75rem) — use sparingly"
+    
+  line_height:
+    minimum: 1.5
+    recommended: "1.5-1.6 for body text"
+    
+  line_length:
+    maximum: "80 characters"
+    recommended: "50-75 characters"
+    
+  letter_spacing:
+    minimum: "normal (not condensed)"
+    
+  text_alignment:
+    preferred: "left"
+    avoid: "justified (creates uneven spacing)"
+    
+  resize:
+    requirement: "Text must be resizable up to 200% without loss of content"
+
+color_independence:
+  rule: "Never use color alone to convey information"
+  
+  examples:
+    bad:
+      - description: "Red text indicates required fields"
+        problem: "Color blind users cannot distinguish"
+        
+      - description: "Green = success, red = error"
+        problem: "No alternative indicator"
+        
+    good:
+      - description: "Required fields marked with asterisk (*) AND red label"
+        solution: "Multiple indicators"
+        
+      - description: "Error messages include icon AND red color AND text explanation"
+        solution: "Multiple indicators"
+        
+  requirements:
+    error_states: "Icon + color + text"
+    success_states: "Icon + color + text"
+    links: "Underline + color"
+    form_required: "Asterisk (*) + label text"
+
+images:
+  alt_text:
+    rule: "All meaningful images must have descriptive alt text"
+    
+    guidelines:
+      - "Describe the content and function of the image"
+      - "Keep descriptions concise (125 characters or less)"
+      - "Don't start with 'Image of' or 'Picture of'"
+      - "Include relevant text that appears in the image"
+      
+    examples:
+      good:
+        - image: "Team meeting photo"
+          alt: "Five team members collaborating around a whiteboard with project diagrams"
+          
+        - image: "Chart"
+          alt: "Bar chart showing 40% increase in efficiency over 12 months"
+          
+      bad:
+        - image: "Team meeting photo"
+          alt: "Image"
+          problem: "Not descriptive"
+          
+        - image: "Chart"
+          alt: "Chart showing data"
+          problem: "Doesn't convey the actual information"
+          
+  decorative_images:
+    rule: "Use empty alt text (alt='') for purely decorative images"
+    examples:
+      - "Background textures"
+      - "Decorative borders"
+      - "Visual flourishes that add no information"
+
+documents:
+  heading_hierarchy:
+    rule: "Use proper heading levels in sequence"
+    
+    correct:
+      - "H1 → H2 → H3 → H4"
+      - "H1 → H2 → H2 → H3"
+      
+    incorrect:
+      - "H1 → H3 (skipped H2)"
+      - "H2 → H1 (wrong order)"
+      - "Using bold text instead of headings"
+      
+  reading_order:
+    rule: "Content must follow logical reading order"
+    applies_to:
+      - "Multi-column layouts"
+      - "Presentations"
+      - "Complex documents"
+      
+  tables:
+    requirements:
+      - "Use table headers (<th>) for column/row labels"
+      - "Include caption or summary for complex tables"
+      - "Don't use tables for layout"
+      - "Keep tables simple when possible"
+
+interactive_elements:
+  focus_indicators:
+    rule: "All interactive elements must have visible focus states"
+    minimum_contrast: 3.0
+    style: "Outline or border, not color change alone"
+    
+  keyboard_navigation:
+    rule: "All functionality must be accessible via keyboard"
+    requirements:
+      - "Tab to navigate between elements"
+      - "Enter/Space to activate"
+      - "Escape to close modals"
+      - "Arrow keys for menus/selections"
+      
+  touch_targets:
+    minimum_size: "44x44 pixels"
+    minimum_spacing: "8px between targets"
+
+motion:
+  reduced_motion:
+    rule: "Respect user's reduced motion preferences"
+    implementation: "@media (prefers-reduced-motion: reduce)"
+    
+  auto_play:
+    rule: "No auto-playing video or audio"
+    exception: "If auto-play, must provide pause/stop control"
+    
+  flashing:
+    rule: "No content that flashes more than 3 times per second"
+    reason: "Can trigger seizures"
+
+testing_checklist:
+  automated:
+    - "Run accessibility checker (axe, WAVE)"
+    - "Validate HTML structure"
+    - "Check color contrast ratios"
+    
+  manual:
+    - "Navigate with keyboard only"
+    - "Test with screen reader"
+    - "Zoom to 200% and verify usability"
+    - "Test with browser in grayscale mode"
+    - "Verify focus indicators are visible"
+    
+  tools:
+    contrast_checkers:
+      - "WebAIM Contrast Checker"
+      - "Colour Contrast Analyser"
+    screen_readers:
+      - "NVDA (Windows, free)"
+      - "VoiceOver (macOS/iOS, built-in)"
+      - "JAWS (Windows)"
+    automated_testing:
+      - "axe DevTools"
+      - "WAVE"
+      - "Lighthouse"

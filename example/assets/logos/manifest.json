@@ -1,0 +1,170 @@
+{
+  "$schema": "https://mrbs.dev/schema/v1/logo.manifest.json",
+  "logo": {
+    "primary": {
+      "id": "primary",
+      "name": "Primary Logo",
+      "description": "Full logo for standard use on light backgrounds",
+      "file": "primary.svg",
+      "formats": {
+        "svg": "primary.svg",
+        "png_1x": "primary.png",
+        "png_2x": "primary@2x.png",
+        "png_4x": "primary@4x.png",
+        "pdf": "primary.pdf"
+      },
+      "usage": {
+        "contexts": ["documents", "presentations", "website", "print"],
+        "background": "light",
+        "min_background_luminance": 0.7
+      }
+    },
+    "reversed": {
+      "id": "reversed",
+      "name": "Reversed Logo",
+      "description": "White/light logo for dark backgrounds",
+      "file": "reversed.svg",
+      "formats": {
+        "svg": "reversed.svg",
+        "png_1x": "reversed.png",
+        "png_2x": "reversed@2x.png"
+      },
+      "usage": {
+        "contexts": ["dark_backgrounds", "photography_overlays", "video"],
+        "background": "dark",
+        "max_background_luminance": 0.4
+      },
+      "use_when": "background_luminance < 0.5"
+    },
+    "monochrome": {
+      "id": "monochrome",
+      "name": "Monochrome Logo",
+      "description": "Single-color logo for limited color applications",
+      "file": "monochrome.svg",
+      "variants": {
+        "black": "monochrome-black.svg",
+        "white": "monochrome-white.svg",
+        "primary": "monochrome-primary.svg"
+      },
+      "usage": {
+        "contexts": ["single_color_print", "merchandise", "watermarks"],
+        "color_options": ["black", "white", "brand_primary"]
+      }
+    },
+    "icon": {
+      "id": "icon",
+      "name": "Icon/Logomark",
+      "description": "Standalone symbol without wordmark",
+      "file": "icon.svg",
+      "formats": {
+        "svg": "icon.svg",
+        "png_16": "icon-16.png",
+        "png_32": "icon-32.png",
+        "png_64": "icon-64.png",
+        "png_128": "icon-128.png",
+        "png_256": "icon-256.png",
+        "png_512": "icon-512.png",
+        "ico": "favicon.ico"
+      },
+      "usage": {
+        "contexts": ["favicon", "app_icon", "social_avatar", "small_spaces"],
+        "minimum_size": "24px"
+      }
+    },
+    "wordmark": {
+      "id": "wordmark",
+      "name": "Wordmark Only",
+      "description": "Text-only logo without symbol",
+      "file": "wordmark.svg",
+      "usage": {
+        "contexts": ["limited_space", "text_heavy_layouts"],
+        "minimum_width": "80px"
+      }
+    },
+    "stacked": {
+      "id": "stacked",
+      "name": "Stacked Logo",
+      "description": "Vertical arrangement for portrait formats",
+      "file": "stacked.svg",
+      "usage": {
+        "contexts": ["portrait_layouts", "square_spaces", "social_media"],
+        "aspect_ratio": "1:1 to 3:4"
+      }
+    }
+  },
+  "rules": {
+    "minimum_size": {
+      "digital": {
+        "full_logo": "40px height",
+        "icon_only": "24px",
+        "wordmark": "80px width"
+      },
+      "print": {
+        "full_logo": "15mm height",
+        "icon_only": "8mm",
+        "wordmark": "25mm width"
+      }
+    },
+    "clear_space": {
+      "measurement": "height of the logomark (symbol)",
+      "minimum": "1x on all sides",
+      "description": "This invisible boundary must remain free of other elements",
+      "diagram": "clearspace-diagram.svg"
+    },
+    "backgrounds": {
+      "approved": [
+        {"type": "solid", "colors": ["white", "neutral-50", "neutral-100"]},
+        {"type": "solid", "colors": ["primary"], "logo_variant": "reversed"},
+        {"type": "solid", "colors": ["neutral-800", "neutral-900"], "logo_variant": "reversed"},
+        {"type": "photography", "requirements": "uncluttered area, adequate contrast", "logo_variant": "reversed"}
+      ],
+      "prohibited": [
+        {"type": "pattern", "reason": "Reduces readability"},
+        {"type": "gradient", "note": "Unless gradient provides consistent contrast"},
+        {"type": "low_contrast", "reason": "Logo must be clearly visible"},
+        {"type": "competing_graphics", "reason": "Logo should stand alone"}
+      ]
+    },
+    "modifications": {
+      "prohibited": [
+        {"action": "rotate", "description": "Do not rotate the logo"},
+        {"action": "skew", "description": "Do not skew or distort"},
+        {"action": "stretch", "description": "Maintain aspect ratio"},
+        {"action": "recolor", "description": "Do not change logo colors"},
+        {"action": "add_effects", "description": "No shadows, glows, or outlines"},
+        {"action": "crop", "description": "Do not crop any part"},
+        {"action": "add_elements", "description": "Do not add text or graphics"},
+        {"action": "recreate", "description": "Do not attempt to redraw"},
+        {"action": "animate", "description": "No animation without approval"}
+      ]
+    },
+    "cobranding": {
+      "partner_logos": {
+        "separation": "2x clear space between logos",
+        "sizing": "Equal visual weight unless contractually specified",
+        "order": "Brand logo first (left or top) unless partnership specifies otherwise"
+      }
+    }
+  },
+  "selection_guide": {
+    "by_context": {
+      "website_header": "primary",
+      "website_footer": "primary or monochrome",
+      "email_signature": "primary",
+      "presentation_title": "primary or reversed",
+      "presentation_footer": "icon or monochrome",
+      "social_media_profile": "icon",
+      "business_card": "primary",
+      "dark_background": "reversed",
+      "single_color_print": "monochrome",
+      "favicon": "icon",
+      "app_icon": "icon"
+    },
+    "by_size": {
+      "large": ["primary", "stacked"],
+      "medium": ["primary", "wordmark"],
+      "small": ["icon", "wordmark"],
+      "tiny": ["icon"]
+    }
+  }
+}

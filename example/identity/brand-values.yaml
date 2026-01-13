@@ -1,0 +1,138 @@
+# Brand Values
+# Machine-readable brand identity guidelines
+
+brand_essence:
+  purpose: "Empowering businesses with intelligent solutions"
+  promise: "Technology that works for you, not against you"
+  position: "The trusted partner for digital transformation"
+
+mission:
+  statement: "To empower organizations with intelligent solutions that amplify human potential"
+  keywords:
+    - "empower"
+    - "intelligent"
+    - "amplify"
+    - "human potential"
+
+vision:
+  statement: "A world where technology seamlessly enhances human capability and creativity"
+  timeframe: "long_term"
+  keywords:
+    - "seamless"
+    - "enhance"
+    - "capability"
+    - "creativity"
+
+values:
+  - name: "Innovation"
+    description: "We embrace new ideas and continuously improve"
+    priority: 1
+    behaviors:
+      - "Question assumptions and challenge the status quo"
+      - "Experiment with new approaches and learn from failures"
+      - "Stay curious and embrace continuous learning"
+      - "Share knowledge and celebrate creative solutions"
+    anti_behaviors:
+      - "Dismissing new ideas without consideration"
+      - "Sticking to outdated processes out of habit"
+      - "Fear of failure preventing experimentation"
+    
+  - name: "Integrity"
+    description: "We act honestly, transparently, and ethically"
+    priority: 2
+    behaviors:
+      - "Keep commitments and deliver on promises"
+      - "Communicate openly, even when difficult"
+      - "Admit mistakes and take responsibility"
+      - "Treat data and privacy with respect"
+    anti_behaviors:
+      - "Overpromising to win business"
+      - "Hiding problems or bad news"
+      - "Blaming others for failures"
+      
+  - name: "Excellence"
+    description: "We pursue the highest quality in everything we do"
+    priority: 3
+    behaviors:
+      - "Set high standards and meet them consistently"
+      - "Pay attention to details that matter"
+      - "Seek feedback and continuously improve"
+      - "Deliver work we're proud of"
+    anti_behaviors:
+      - "Cutting corners to meet deadlines"
+      - "Accepting 'good enough' when better is possible"
+      - "Ignoring quality issues"
+      
+  - name: "Collaboration"
+    description: "We achieve more together than alone"
+    priority: 4
+    behaviors:
+      - "Listen actively and value diverse perspectives"
+      - "Share credit and celebrate team success"
+      - "Help colleagues succeed"
+      - "Build bridges across teams and organizations"
+    anti_behaviors:
+      - "Working in silos"
+      - "Taking credit for others' work"
+      - "Competing internally at the expense of outcomes"
+
+personality:
+  archetype: "The Sage"
+  archetype_description: "Wise, knowledgeable, and trusted advisor"
+  
+  traits:
+    primary:
+      - trait: "Knowledgeable"
+        meaning: "We are experts in our field and share that expertise"
+        evidence: "Thought leadership, educational content, expert guidance"
+        
+      - trait: "Trustworthy"
+        meaning: "We do what we say and say what we mean"
+        evidence: "Consistent delivery, transparent communication"
+        
+      - trait: "Forward-thinking"
+        meaning: "We anticipate needs and prepare for the future"
+        evidence: "Innovative solutions, proactive recommendations"
+        
+    secondary:
+      - trait: "Approachable"
+        meaning: "We make complex things understandable"
+        evidence: "Clear communication, patient guidance"
+        
+      - trait: "Reliable"
+        meaning: "We're there when you need us"
+        evidence: "Consistent service, responsive support"
+        
+      - trait: "Optimistic"
+        meaning: "We believe in positive outcomes"
+        evidence: "Solution-focused approach, encouraging tone"
+
+  we_are:
+    - "Expert but not condescending"
+    - "Confident but not arrogant"
+    - "Professional but not cold"
+    - "Innovative but not reckless"
+    - "Ambitious but not aggressive"
+    
+  we_are_not:
+    - "Flashy or gimmicky"
+    - "Overly corporate or bureaucratic"
+    - "Dismissive or impatient"
+    - "Risk-averse or complacent"
+    - "Pushy or salesy"
+
+target_audience:
+  primary:
+    description: "Decision-makers at mid-to-large enterprises"
+    characteristics:
+      - "Value expertise and proven solutions"
+      - "Need to justify investments with ROI"
+      - "Appreciate clear, professional communication"
+      - "Have complex challenges requiring thoughtful solutions"
+      
+  secondary:
+    description: "Technical professionals and implementers"
+    characteristics:
+      - "Value technical accuracy and detail"
+      - "Appreciate hands-on guidance"
+      - "Need practical, actionable information"

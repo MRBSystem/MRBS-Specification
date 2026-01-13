@@ -1,0 +1,145 @@
+{
+  "$schema": "https://mrbs.dev/schema/v1/colors.tokens.json",
+  "color": {
+    "brand": {
+      "primary": {
+        "$value": "#0066CC",
+        "$type": "color",
+        "semantic_role": "brand_identity",
+        "usage": {
+          "recommended": ["headings", "cta_buttons", "links", "icons"],
+          "allowed": ["borders", "accents", "highlights"],
+          "prohibited": ["body_text", "large_backgrounds"]
+        },
+        "pairing": {
+          "approved_backgrounds": ["white", "neutral-50", "neutral-100"],
+          "prohibited_pairs": ["secondary", "error"]
+        },
+        "accessibility": {
+          "wcag_level": "AA",
+          "min_contrast_ratio": 4.5,
+          "tested_combinations": [
+            {"background": "#FFFFFF", "ratio": 4.8, "passes": ["AA"]},
+            {"background": "#FAFAFA", "ratio": 4.6, "passes": ["AA"]}
+          ]
+        },
+        "emotional_association": ["trust", "professionalism", "reliability", "innovation"],
+        "variants": {
+          "light": "#3399FF",
+          "dark": "#004499",
+          "muted": "#6699CC"
+        }
+      },
+      "secondary": {
+        "$value": "#FF6B35",
+        "$type": "color",
+        "semantic_role": "energy_accent",
+        "usage": {
+          "recommended": ["highlights", "callouts", "notifications"],
+          "allowed": ["icons", "small_accents"],
+          "prohibited": ["headings", "body_text", "large_areas"],
+          "limit": "≤15% of design surface"
+        },
+        "pairing": {
+          "approved_backgrounds": ["white", "neutral-900"],
+          "prohibited_pairs": ["primary", "warning"]
+        },
+        "emotional_association": ["energy", "creativity", "action"],
+        "variants": {
+          "light": "#FF9966",
+          "dark": "#CC4400"
+        }
+      }
+    },
+    "neutral": {
+      "white": {
+        "$value": "#FFFFFF",
+        "$type": "color",
+        "role": "background_primary"
+      },
+      "50": {
+        "$value": "#FAFAFA",
+        "$type": "color",
+        "role": "background_secondary"
+      },
+      "100": {
+        "$value": "#F5F5F5",
+        "$type": "color",
+        "role": "background_subtle"
+      },
+      "200": {
+        "$value": "#EEEEEE",
+        "$type": "color",
+        "role": "border_light"
+      },
+      "300": {
+        "$value": "#E0E0E0",
+        "$type": "color",
+        "role": "border_default"
+      },
+      "400": {
+        "$value": "#BDBDBD",
+        "$type": "color",
+        "role": "text_placeholder"
+      },
+      "500": {
+        "$value": "#9E9E9E",
+        "$type": "color",
+        "role": "text_disabled"
+      },
+      "600": {
+        "$value": "#757575",
+        "$type": "color",
+        "role": "text_tertiary"
+      },
+      "700": {
+        "$value": "#616161",
+        "$type": "color",
+        "role": "text_secondary"
+      },
+      "800": {
+        "$value": "#424242",
+        "$type": "color",
+        "role": "text_primary_alt"
+      },
+      "900": {
+        "$value": "#212121",
+        "$type": "color",
+        "role": "text_primary"
+      }
+    },
+    "semantic": {
+      "success": {
+        "$value": "#2E7D32",
+        "$type": "color",
+        "usage": ["success_messages", "positive_indicators", "confirmations"]
+      },
+      "warning": {
+        "$value": "#F9A825",
+        "$type": "color",
+        "usage": ["warnings", "caution_indicators", "pending_states"]
+      },
+      "error": {
+        "$value": "#C62828",
+        "$type": "color",
+        "usage": ["error_messages", "destructive_actions", "alerts"]
+      },
+      "info": {
+        "$value": "#1565C0",
+        "$type": "color",
+        "usage": ["informational_messages", "tips", "help_text"]
+      }
+    }
+  },
+  "accessibility": {
+    "min_contrast_text": 4.5,
+    "min_contrast_large_text": 3.0,
+    "tested_combinations": [
+      {"foreground": "primary", "background": "white", "ratio": 4.8, "passes": ["AA"]},
+      {"foreground": "neutral-900", "background": "white", "ratio": 16.1, "passes": ["AA", "AAA"]},
+      {"foreground": "neutral-700", "background": "white", "ratio": 5.9, "passes": ["AA"]},
+      {"foreground": "white", "background": "primary", "ratio": 4.8, "passes": ["AA"]},
+      {"foreground": "white", "background": "neutral-900", "ratio": 16.1, "passes": ["AA", "AAA"]}
+    ]
+  }
+}

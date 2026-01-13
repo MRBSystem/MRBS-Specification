@@ -1,0 +1,270 @@
+{
+  "$schema": "https://mrbs.dev/schema/v1/template.manifest.json",
+  "template": {
+    "type": "email",
+    "name": "Email Templates",
+    "version": "1.0.0",
+    "description": "Templates for email communications"
+  },
+  "global_settings": {
+    "max_width": "600px",
+    "background_color": "{color.neutral.100}",
+    "content_background": "{color.white}",
+    "font_family": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "font_size": "16px",
+    "line_height": 1.5,
+    "text_color": "{color.neutral.900}"
+  },
+  "templates": [
+    {
+      "id": "transactional",
+      "name": "Transactional Email",
+      "purpose": "Order confirmations, receipts, account updates",
+      "file": "transactional.html",
+      "structure": {
+        "header": {
+          "logo": true,
+          "logo_height": "40px",
+          "background": "{color.white}",
+          "padding": "24px"
+        },
+        "body": {
+          "padding": "32px 24px",
+          "background": "{color.white}"
+        },
+        "footer": {
+          "padding": "24px",
+          "background": "{color.neutral.100}",
+          "text_size": "14px",
+          "text_color": "{color.neutral.600}"
+        }
+      },
+      "zones": {
+        "greeting": {
+          "format": "Hi {first_name},",
+          "typography": "body"
+        },
+        "main_content": {
+          "max_paragraphs": 3,
+          "typography": "body"
+        },
+        "action_button": {
+          "required": false,
+          "style": "primary_button"
+        },
+        "closing": {
+          "format": "Best,\nThe [Company] Team"
+        }
+      }
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing Email",
+      "purpose": "Newsletters, promotions, announcements",
+      "file": "marketing.html",
+      "structure": {
+        "header": {
+          "logo": true,
+          "navigation": false,
+          "hero_image": true,
+          "hero_height": "200px"
+        },
+        "body": {
+          "sections": "multiple",
+          "padding": "32px 24px"
+        },
+        "footer": {
+          "social_links": true,
+          "unsubscribe": true,
+          "company_address": true
+        }
+      },
+      "zones": {
+        "headline": {
+          "max_characters": 50,
+          "typography": "h1"
+        },
+        "subheadline": {
+          "max_characters": 100,
+          "typography": "body_large"
+        },
+        "body_sections": {
+          "max_sections": 3,
+          "section_structure": ["heading", "paragraph", "cta"]
+        },
+        "primary_cta": {
+          "required": true,
+          "style": "primary_button",
+          "max_text": 25
+        }
+      },
+      "content_rules": {
+        "subject_line_max": 50,
+        "preheader_max": 100,
+        "body_max_words": 200,
+        "images_alt_text": "required"
+      }
+    },
+    {
+      "id": "notification",
+      "name": "Notification Email",
+      "purpose": "Alerts, reminders, status updates",
+      "file": "notification.html",
+      "structure": {
+        "header": {
+          "logo": true,
+          "minimal": true
+        },
+        "body": {
+          "icon": true,
+          "concise": true,
+          "padding": "24px"
+        },
+        "footer": {
+          "minimal": true
+        }
+      },
+      "zones": {
+        "icon": {
+          "size": "48px",
+          "types": ["info", "success", "warning", "error"]
+        },
+        "title": {
+          "max_characters": 60,
+          "typography": "h3"
+        },
+        "message": {
+          "max_characters": 200,
+          "typography": "body"
+        },
+        "action": {
+          "required": false,
+          "style": "text_link"
+        }
+      }
+    },
+    {
+      "id": "welcome",
+      "name": "Welcome Email",
+      "purpose": "New user onboarding",
+      "file": "welcome.html",
+      "structure": {
+        "header": {
+          "logo": true,
+          "hero_image": true
+        },
+        "body": {
+          "greeting": "personalized",
+          "value_props": 3,
+          "next_steps": true
+        },
+        "footer": {
+          "help_resources": true,
+          "social_links": true
+        }
+      },
+      "zones": {
+        "headline": {
+          "format": "Welcome to [Product], {first_name}!",
+          "typography": "h1"
+        },
+        "intro_paragraph": {
+          "max_words": 50,
+          "tone": "warm, enthusiastic"
+        },
+        "value_props": {
+          "count": 3,
+          "format": "icon + short description",
+          "max_words_each": 15
+        },
+        "primary_cta": {
+          "text": "Get Started",
+          "style": "primary_button"
+        },
+        "secondary_links": {
+          "max_items": 3,
+          "examples": ["Help Center", "Community", "Video Tutorial"]
+        }
+      }
+    },
+    {
+      "id": "plain_text",
+      "name": "Plain Text Email",
+      "purpose": "Personal outreach, simple communications",
+      "file": null,
+      "format": "text_only",
+      "structure": {
+        "greeting": "informal",
+        "body": "conversational",
+        "signature": "personal"
+      },
+      "rules": {
+        "max_line_length": 80,
+        "paragraph_spacing": "blank_line",
+        "no_html": true
+      }
+    }
+  ],
+  "components": {
+    "buttons": {
+      "primary": {
+        "background": "{color.brand.primary}",
+        "text_color": "{color.white}",
+        "padding": "16px 32px",
+        "border_radius": "{effects.radius.md}",
+        "font_weight": 600,
+        "min_width": "120px"
+      },
+      "secondary": {
+        "background": "{color.white}",
+        "text_color": "{color.brand.primary}",
+        "border": "2px solid {color.brand.primary}",
+        "padding": "14px 30px"
+      },
+      "text_link": {
+        "color": "{color.brand.primary}",
+        "text_decoration": "underline"
+      }
+    },
+    "dividers": {
+      "standard": {
+        "border_top": "1px solid {color.neutral.200}",
+        "margin": "24px 0"
+      }
+    },
+    "social_icons": {
+      "size": "24px",
+      "spacing": "12px",
+      "style": "monochrome",
+      "color": "{color.neutral.600}"
+    }
+  },
+  "footer_requirements": {
+    "unsubscribe_link": {
+      "required_for": ["marketing"],
+      "text": "Unsubscribe from these emails",
+      "placement": "footer"
+    },
+    "company_address": {
+      "required_for": ["marketing"],
+      "format": "[Company Name]\n[Street Address]\n[City, State ZIP]"
+    },
+    "copyright": {
+      "format": "© {year} [Company Name]"
+    }
+  },
+  "accessibility": {
+    "alt_text": "Required for all images",
+    "link_text": "Descriptive (not 'click here')",
+    "color_contrast": "4.5:1 minimum",
+    "font_size": "16px minimum for body"
+  },
+  "testing_checklist": [
+    "Preview in Gmail, Outlook, Apple Mail",
+    "Test dark mode rendering",
+    "Verify all links work",
+    "Check images load (and alt text shows when blocked)",
+    "Test on mobile devices",
+    "Verify unsubscribe link works"
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mrbs.dev/schema/v1/brand.manifest.json",
+  "title": "MRBS Brand Manifest",
+  "description": "Root manifest file for an MRBS-compliant brand system",
+  "type": "object",
+  "required": ["mrbs_version", "brand", "components"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "mrbs_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "MRBS specification version"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Brand system version"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last update date (YYYY-MM-DD)"
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Organization name"
+        },
+        "legal_name": {
+          "type": "string",
+          "description": "Legal entity name"
+        },
+        "industry": {
+          "type": "string",
+          "description": "Industry category"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri"
+        },
+        "headquarters": {
+          "type": "string",
+          "description": "Headquarters location"
+        }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Primary brand name"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Brand tagline or slogan"
+        },
+        "mission": {
+          "type": "string",
+          "description": "Mission statement"
+        },
+        "vision": {
+          "type": "string",
+          "description": "Vision statement"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Core brand values"
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "properties": {
+        "visual": {
+          "type": "string",
+          "description": "Path to visual tokens directory"
+        },
+        "identity": {
+          "type": "string",
+          "description": "Path to identity guidelines directory"
+        },
+        "assets": {
+          "type": "string",
+          "description": "Path to brand assets directory"
+        },
+        "templates": {
+          "type": "string",
+          "description": "Path to templates directory"
+        },
+        "rules": {
+          "type": "string",
+          "description": "Path to rules directory"
+        },
+        "examples": {
+          "type": "string",
+          "description": "Path to examples directory"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "description": "Custom component paths (use x_ prefix)"
+      }
+    },
+    "ai_instructions": {
+      "type": "object",
+      "properties": {
+        "priority_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Order of precedence when rules conflict"
+        },
+        "validation_required": {
+          "type": "boolean",
+          "description": "Whether AI should validate output"
+        },
+        "fallback_behavior": {
+          "type": "string",
+          "enum": ["conservative", "creative"],
+          "description": "How to handle ambiguous situations"
+        }
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "inherits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "description": "Sub-brand or product profiles"
+    }
+  },
+  "additionalProperties": true
+}

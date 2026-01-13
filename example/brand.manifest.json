@@ -1,0 +1,42 @@
+{
+  "$schema": "https://mrbs.dev/schema/v1/brand.manifest.json",
+  "mrbs_version": "1.0.0",
+  "version": "1.0.0",
+  "updated": "2025-01-15",
+  
+  "organization": {
+    "name": "Acme Corporation",
+    "legal_name": "Acme Corporation Ltd.",
+    "industry": "Technology",
+    "website": "https://example.com",
+    "headquarters": "San Francisco, CA"
+  },
+  
+  "brand": {
+    "name": "Acme",
+    "tagline": "Innovation for tomorrow",
+    "mission": "Empowering businesses with intelligent solutions",
+    "vision": "A world where technology amplifies human potential",
+    "values": [
+      "Innovation",
+      "Integrity", 
+      "Excellence",
+      "Collaboration"
+    ]
+  },
+  
+  "components": {
+    "visual": "./visual/",
+    "identity": "./identity/",
+    "assets": "./assets/",
+    "templates": "./templates/",
+    "rules": "./rules/",
+    "examples": "./examples/"
+  },
+  
+  "ai_instructions": {
+    "priority_order": ["rules", "visual", "templates", "identity"],
+    "validation_required": true,
+    "fallback_behavior": "conservative"
+  }
+}
