@@ -1233,6 +1233,76 @@ Organizations can define profiles for subsets of the brand:
 }
 ```
 
+### 12.4 Versioning and Evolution
+
+#### Version Format
+
+MRBS brand systems SHOULD use Semantic Versioning (SemVer): `MAJOR.MINOR.PATCH`
+
+- **MAJOR**: Breaking changes (rename/remove tokens, change structure)
+- **MINOR**: Additive changes (new tokens, new optional fields)
+- **PATCH**: Fixes and refinements (value adjustments, typos, documentation)
+
+#### Version Declaration
+
+Declare versions in `brand.manifest.json`:
+
+```json
+{
+  "mrbs_version": "1.0.0",
+  "version": "2.1.3",
+  "updated": "2025-01-19",
+  "changelog": "./CHANGELOG.md"
+}
+```
+
+Where:
+- `mrbs_version`: MRBS specification version used
+- `version`: Brand system version
+- `updated`: Last update date (ISO 8601)
+- `changelog`: Path to changelog file
+
+#### Migration Guides
+
+For MAJOR version changes, provide migration documentation:
+
+```markdown
+# Migration: v1.x to v2.0
+
+## Breaking Changes
+
+1. **Token rename**: `color.primary` → `color.brand.primary`
+   - Find/replace in all templates
+   - Update token references
+
+2. **File moved**: `brand/colors.json` → `visual/colors.tokens.json`
+   - Update import paths
+
+## Migration Script
+
+...
+```
+
+#### Deprecation Process
+
+1. Mark deprecated tokens with `deprecated` field
+2. Include `replacement` reference
+3. Maintain for at least one MINOR version
+4. Remove in next MAJOR version
+
+**Example:**
+```json
+{
+  "color_primary_deprecated": {
+    "$value": "{color.brand.primary}",
+    "$type": "color",
+    "deprecated": true,
+    "replacement": "color.brand.primary",
+    "removal_version": "3.0.0"
+  }
+}
+```
+
 ---
 
 ## Appendix A: File Format Quick Reference
@@ -1247,17 +1317,91 @@ Organizations can define profiles for subsets of the brand:
 
 ## Appendix B: Token Reference Syntax
 
-Reference other tokens using curly braces:
+### Overview
 
+Token references allow values to reference other tokens, enabling consistency and easier maintenance.
+MRBS token references are compatible with the W3C Design Tokens Format with MRBS extensions.
+
+### Syntax
+
+Token references use curly brace notation: `{path.to.token}`
+
+### Resolution Rules
+
+1. **Path format**: `{category.subcategory.token_name}`
+2. **Case sensitive**: Token paths are case-sensitive
+3. **Nested resolution**: Tokens can reference other tokens (resolved recursively)
+4. **Circular reference**: Circular references are INVALID and MUST be detected
+5. **Fallback** (optional extension): Use `{token|fallback_value}` for optional references
+
+### Examples
+
+**Basic Reference:**
 ```json
 {
   "semantic": {
     "success": {
-      "$value": "{color.brand.primary}"
+      "$value": "{color.brand.primary}",
+      "$type": "color"
     }
   }
 }
 ```
+
+**Nested References:**
+```json
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "$value": "#0066CC",
+        "$type": "color"
+      }
+    },
+    "semantic": {
+      "link": {
+        "$value": "{color.brand.primary}",
+        "$type": "color"
+      }
+    }
+  },
+  "typography": {
+    "link": {
+      "color": "{color.semantic.link}"
+    }
+  }
+}
+```
+
+**Cross-File References:**
+
+When referencing tokens from different files, use the component prefix:
+
+```json
+{
+  "template_heading_color": {
+    "$value": "{visual.color.brand.primary}",
+    "description": "References color from visual/colors.tokens.json"
+  }
+}
+```
+
+**Computed Values (Extension):**
+```json
+{
+  "half_margin": {
+    "$value": "calc({spacing.scale.md} / 2)",
+    "$type": "dimension"
+  }
+}
+```
+
+### Validation Requirements
+
+1. All token references MUST resolve to an actual token
+2. Circular references MUST be detected and rejected
+3. References to non-existent tokens MUST cause validation failure
+4. Type compatibility SHOULD be verified (e.g., color references should resolve to color tokens)
 
 ## Appendix C: WCAG Contrast Ratios
 

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mrbs.dev/schema/v1.0/spacing.tokens.schema.json",
+  "title": "MRBS Spacing Tokens Schema",
+  "description": "Spacing and layout definitions for consistent spacing across brand materials",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "spacing": {
+      "type": "object",
+      "properties": {
+        "base_unit": {
+          "$ref": "#/$defs/spacingToken",
+          "description": "Base spacing unit - all spacing derives from this"
+        },
+        "scale": {
+          "type": "object",
+          "description": "Spacing scale values",
+          "additionalProperties": {
+            "$ref": "#/$defs/spacingScaleToken"
+          }
+        },
+        "semantic": {
+          "type": "object",
+          "description": "Semantic spacing tokens with contextual meaning",
+          "additionalProperties": {
+            "$ref": "#/$defs/semanticSpacingToken"
+          }
+        },
+        "presentation": {
+          "type": "object",
+          "description": "Spacing specific to presentation templates",
+          "additionalProperties": {
+            "$ref": "#/$defs/spacingToken"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "spacingToken": {
+      "type": "object",
+      "required": ["$value"],
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "Spacing value (px, rem, em) or token reference"
+        },
+        "$type": {
+          "const": "dimension"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "spacingScaleToken": {
+      "type": "object",
+      "required": ["$value"],
+      "properties": {
+        "$value": {
+          "type": "string"
+        },
+        "multiplier": {
+          "type": "number",
+          "description": "Multiplier relative to base unit"
+        },
+        "usage": {
+          "type": "string"
+        }
+      }
+    },
+    "semanticSpacingToken": {
+      "type": "object",
+      "required": ["$value"],
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "Spacing value or reference to scale token"
+        },
+        "description": {
+          "type": "string"
+        },
+        "responsive": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "type": "string"
+            },
+            "tablet": {
+              "type": "string"
+            },
+            "desktop": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

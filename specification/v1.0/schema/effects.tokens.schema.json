@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mrbs.dev/schema/v1.0/effects.tokens.schema.json",
+  "title": "MRBS Effects Tokens Schema",
+  "description": "Visual effects including shadows, borders, transitions, and other UI enhancements",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "effects": {
+      "type": "object",
+      "properties": {
+        "shadow": {
+          "type": "object",
+          "description": "Shadow effects for elevation",
+          "additionalProperties": {
+            "$ref": "#/$defs/shadowToken"
+          }
+        },
+        "radius": {
+          "type": "object",
+          "description": "Border radius values",
+          "additionalProperties": {
+            "$ref": "#/$defs/radiusToken"
+          }
+        },
+        "transition": {
+          "type": "object",
+          "description": "Animation and transition timings",
+          "additionalProperties": {
+            "$ref": "#/$defs/transitionToken"
+          }
+        },
+        "opacity": {
+          "type": "object",
+          "description": "Opacity values for different states",
+          "additionalProperties": {
+            "$ref": "#/$defs/opacityToken"
+          }
+        },
+        "blur": {
+          "type": "object",
+          "description": "Blur effects",
+          "additionalProperties": {
+            "$ref": "#/$defs/blurToken"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "shadowToken": {
+      "type": "object",
+      "required": ["$value", "$type"],
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "CSS shadow value or reference"
+        },
+        "$type": {
+          "const": "shadow"
+        },
+        "usage": {
+          "type": "string",
+          "description": "Recommended usage context"
+        }
+      }
+    },
+    "radiusToken": {
+      "type": "object",
+      "required": ["$value", "$type"],
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "Border radius value or reference"
+        },
+        "$type": {
+          "const": "dimension"
+        },
+        "usage": {
+          "type": "string"
+        }
+      }
+    },
+    "transitionToken": {
+      "type": "object",
+      "required": ["$value", "$type"],
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "CSS transition value (duration + easing)"
+        },
+        "$type": {
+          "const": "transition"
+        },
+        "usage": {
+          "type": "string"
+        }
+      }
+    },
+    "opacityToken": {
+      "type": "object",
+      "required": ["$value"],
+      "properties": {
+        "$value": {
+          "type": ["string", "number"],
+          "description": "Opacity value (0-1)"
+        },
+        "usage": {
+          "type": "string"
+        }
+      }
+    },
+    "blurToken": {
+      "type": "object",
+      "required": ["$value"],
+      "properties": {
+        "$value": {
+          "type": "string",
+          "description": "Blur radius value"
+        },
+        "usage": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
