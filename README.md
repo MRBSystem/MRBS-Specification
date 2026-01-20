@@ -3,7 +3,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Specification Version](https://img.shields.io/badge/spec-v1.0.0-green.svg)](./specification/v1.0/SPEC.md)
 
-**An open specification for AI-ready enterprise brand identity systems.**
+**An open specification for AI-ready enterprise brand identity systems. Brand as Code [BaC]**
 
 ---
 
