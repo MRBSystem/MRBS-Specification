@@ -28,6 +28,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2026-11-14
+
+All additions are optional; every 1.0 brand system remains valid.
+
+### Added
+- Provenance and status (§4.5): `$status` (`official` | `derived` | `proposed`), `$source`, `$derived_from` on any value; manifest `provenance` defaults.
+  Agents must not present `proposed` values as the owner's identity.
+- Brand architecture (§4.6): `brand_architecture` with `role` (`standalone` | `master` | `member`), `parent`, `inherits`, `assigned`, `members` — for brand families where a master brand assigns values to member brands.
+- Colour systems (§5.2.1): `color_systems` on colour tokens (RGB, CMYK coated/uncoated, Pantone, NCS, RAL, film, per-medium hex).
+- Typeface contexts (§5.3.1): `contexts` and `rationale` on `font_family` entries.
+- External and restricted assets (§7.1.1): `external` (`href`, `owner`, `rights`) instead of `file`; per-variant `minimum_size` object.
+- Provenance validation (§11.2.1).
+
+---
+
 ## [1.0.0] - 2025-01-15
 
 ### Added

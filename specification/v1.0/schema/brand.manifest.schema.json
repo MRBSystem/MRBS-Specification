@@ -4,7 +4,11 @@
   "title": "MRBS Brand Manifest",
   "description": "Root manifest file for an MRBS-compliant brand system",
   "type": "object",
-  "required": ["mrbs_version", "brand", "components"],
+  "required": [
+    "mrbs_version",
+    "brand",
+    "components"
+  ],
   "properties": {
     "$schema": {
       "type": "string",
@@ -52,7 +56,9 @@
     },
     "brand": {
       "type": "object",
-      "required": ["name"],
+      "required": [
+        "name"
+      ],
       "properties": {
         "name": {
           "type": "string",
@@ -128,7 +134,10 @@
         },
         "fallback_behavior": {
           "type": "string",
-          "enum": ["conservative", "creative"],
+          "enum": [
+            "conservative",
+            "creative"
+          ],
           "description": "How to handle ambiguous situations"
         }
       }
@@ -150,7 +159,159 @@
         }
       },
       "description": "Sub-brand or product profiles"
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Default provenance for all values in this brand system (1.1.0)",
+      "properties": {
+        "$status": {
+          "type": "string",
+          "enum": [
+            "official",
+            "derived",
+            "proposed"
+          ],
+          "description": "official: approved by the brand owner; derived: computed from official values; proposed: not approved by the owner (1.1.0)"
+        },
+        "$source": {
+          "$ref": "#/$defs/source"
+        },
+        "$derived_from": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Token references or rule a derived or proposed value comes from (1.1.0)"
+        },
+        "maintainer": {
+          "type": "string"
+        }
+      }
+    },
+    "brand_architecture": {
+      "type": "object",
+      "description": "Links this brand system to a master or member brands (1.1.0)",
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "standalone",
+            "master",
+            "member"
+          ],
+          "default": "standalone"
+        },
+        "parent": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "manifest": {
+              "type": "string",
+              "format": "uri-reference"
+            }
+          }
+        },
+        "inherits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assigned": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "manifest": {
+                "type": "string",
+                "format": "uri-reference"
+              }
+            }
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "role": {
+            "const": "member"
+          }
+        },
+        "required": [
+          "role"
+        ]
+      },
+      "then": {
+        "required": [
+          "parent"
+        ],
+        "properties": {
+          "parent": {
+            "required": [
+              "manifest"
+            ]
+          }
+        }
+      }
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "$defs": {
+    "source": {
+      "type": "object",
+      "description": "Where a value was taken from (1.1.0)",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "file": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "retrieved": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": "string"
+        },
+        "page": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  }
 }

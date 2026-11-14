@@ -76,22 +76,30 @@
           "oneOf": [
             {
               "type": "array",
-              "items": {"type": "string"}
+              "items": {
+                "type": "string"
+              }
             },
             {
               "type": "object",
               "properties": {
                 "recommended": {
                   "type": "array",
-                  "items": {"type": "string"}
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "allowed": {
                   "type": "array",
-                  "items": {"type": "string"}
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "prohibited": {
                   "type": "array",
-                  "items": {"type": "string"}
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "limit": {
                   "type": "string"
@@ -105,11 +113,15 @@
           "properties": {
             "approved_backgrounds": {
               "type": "array",
-              "items": {"type": "string"}
+              "items": {
+                "type": "string"
+              }
             },
             "prohibited_pairs": {
               "type": "array",
-              "items": {"type": "string"}
+              "items": {
+                "type": "string"
+              }
             }
           }
         },
@@ -118,7 +130,11 @@
           "properties": {
             "wcag_level": {
               "type": "string",
-              "enum": ["A", "AA", "AAA"]
+              "enum": [
+                "A",
+                "AA",
+                "AAA"
+              ]
             },
             "min_contrast_ratio": {
               "type": "number"
@@ -133,26 +149,174 @@
         },
         "emotional_association": {
           "type": "array",
-          "items": {"type": "string"}
+          "items": {
+            "type": "string"
+          }
         },
         "variants": {
           "type": "object",
-          "additionalProperties": {"type": "string"}
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "$status": {
+          "type": "string",
+          "enum": [
+            "official",
+            "derived",
+            "proposed"
+          ],
+          "description": "official: approved by the brand owner; derived: computed from official values; proposed: not approved by the owner (1.1.0)"
+        },
+        "$source": {
+          "$ref": "#/$defs/source"
+        },
+        "$derived_from": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Token references or rule a derived or proposed value comes from (1.1.0)"
+        },
+        "color_systems": {
+          "type": "object",
+          "description": "The same colour in other colour systems (1.1.0)",
+          "properties": {
+            "rgb": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0
+              },
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "cmyk_coated": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "cmyk_uncoated": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0
+              },
+              "minItems": 4,
+              "maxItems": 4
+            },
+            "pantone_coated": {
+              "type": "string"
+            },
+            "pantone_uncoated": {
+              "type": "string"
+            },
+            "ncs": {
+              "type": "string"
+            },
+            "ral": {
+              "type": "string"
+            },
+            "film": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "supplier": {
+                    "type": "string"
+                  },
+                  "series": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "patternProperties": {
+            "^hex_[a-z0-9_]+$": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            }
+          },
+          "additionalProperties": true
         }
       }
     },
     "testedCombination": {
       "type": "object",
       "properties": {
-        "foreground": {"type": "string"},
-        "background": {"type": "string"},
-        "ratio": {"type": "number"},
+        "foreground": {
+          "type": "string"
+        },
+        "background": {
+          "type": "string"
+        },
+        "ratio": {
+          "type": "number"
+        },
         "passes": {
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["A", "AA", "AAA"]
+            "enum": [
+              "A",
+              "AA",
+              "AAA"
+            ]
           }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "description": "Where a value was taken from (1.1.0)",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "file": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "retrieved": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": "string"
+        },
+        "page": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ]
         }
       }
     }
