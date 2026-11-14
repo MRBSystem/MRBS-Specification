@@ -3,8 +3,8 @@
 **Machine-Readable Brand System**
 
 Status: **Final**  
-Version: **1.0.0**  
-Date: **January 2025**
+Version: **1.1.0**  
+Date: **November 2026**
 
 ---
 
@@ -205,6 +205,78 @@ The `ai_instructions` object provides guidance for AI agents:
 - `validation_required`: Whether AI should validate output before delivery
 - `fallback_behavior`: How to handle ambiguous situations ("conservative" or "creative")
 
+### 4.5 Provenance and Status
+
+*Added in 1.1.0. Optional.*
+
+A brand system is often transcribed from a published brand book, or prepared by someone other than the brand owner.
+An AI agent needs to know where a value comes from and whether the owner has approved it.
+
+Any token, guideline entry, asset entry or the manifest itself MAY carry:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `$status` | string | `official` — published or approved by the brand owner; `derived` — computed from official values by a stated rule; `proposed` — a suggestion not approved by the owner |
+| `$source` | object | Where the value was taken from (see below) |
+| `$derived_from` | string or array | For `derived` and `proposed`: the token references or rule the value was computed from |
+
+`$source` fields (all optional): `title`, `publisher`, `url`, `file`, `sha256`, `page`, `retrieved` (date), `note`.
+
+The manifest MAY set defaults in `provenance`; a value on a token overrides the default.
+
+```json
+{
+  "provenance": {
+    "$status": "official",
+    "$source": {
+      "title": "Brand Guidelines",
+      "publisher": "Example Organization",
+      "url": "https://example.com/brand-guidelines.pdf",
+      "sha256": "…",
+      "retrieved": "2026-11-14"
+    },
+    "maintainer": "Name of the party that prepared this MRBS system, if not the brand owner"
+  }
+}
+```
+
+AI agents MUST NOT present `proposed` values as the owner's official identity.
+When content is generated from `proposed` values, the agent SHOULD say so.
+
+### 4.6 Brand Architecture
+
+*Added in 1.1.0. Optional.*
+
+Some brands belong to a family: a master brand sets shared rules, and member brands (divisions, subsidiaries, agencies, product lines) each have their own name and some assigned values, such as a colour from the family palette.
+Profiles (§12.3) describe subsets of one brand; brand architecture links separate brand systems.
+
+```json
+{
+  "brand_architecture": {
+    "role": "member",
+    "parent": {
+      "name": "Example Group",
+      "manifest": "https://example.com/brand/brand.manifest.json"
+    },
+    "inherits": ["visual.typography", "rules", "assets.logo.rules"],
+    "assigned": {
+      "color.brand.primary": "{parent:color.family.blue}"
+    }
+  }
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `role` | string | `standalone` (default), `master` or `member` |
+| `parent` | object | For `member`: the master brand's `name` and `manifest` URL |
+| `inherits` | array | Component paths taken unchanged from the parent |
+| `assigned` | object | Token path → value or `{parent:token.path}` reference to the parent's tokens |
+| `members` | array | For `master`: optional list of `{name, manifest}` |
+
+A value defined in the member's own files overrides an inherited one.
+An agent resolving a member brand SHOULD load the parent manifest and apply `inherits` and `assigned` before the member's own values.
+
 ---
 
 ## 5. Visual Tokens
@@ -272,6 +344,38 @@ File: `visual/colors.tokens.json`
   }
 }
 ```
+
+### 5.2.1 Colour Systems
+
+*Added in 1.1.0. Optional.*
+
+Brand books usually give one colour in several systems: screen (sRGB hex, RGB), print (CMYK on coated and uncoated stock, Pantone), paint and signage (NCS, RAL) and film.
+A colour token MAY list them in `color_systems`; `$value` stays the screen value.
+
+```json
+{
+  "primary": {
+    "$value": "#0066CC",
+    "$type": "color",
+    "color_systems": {
+      "rgb": [0, 102, 204],
+      "cmyk_coated": [100, 50, 0, 0],
+      "cmyk_uncoated": [100, 45, 0, 0],
+      "pantone_coated": "PMS 2935 C",
+      "pantone_uncoated": "PMS 2935 U",
+      "hex_coated": "#0057B8",
+      "ncs": "S 2060-R80B",
+      "ral": "5005",
+      "film": [{"supplier": "Example Films", "series": "500", "code": "540"}]
+    },
+    "$source": {"title": "Brand Guidelines", "page": 28}
+  }
+}
+```
+
+Keys: `rgb` and CMYK as integer arrays; `hex_*` for screen equivalents the source gives per medium; other systems as strings in the notation of that system.
+If the source gives more than one screen value for the same colour (for example, a web value and a separate hex value), `$value` holds the one marked for screens and the others are kept under `hex_*` keys — values are not reconciled.
+`x_pantone` (§12.1) remains valid; new systems SHOULD use `color_systems`.
 
 ### 5.3 Typography Tokens
 
@@ -360,6 +464,25 @@ File: `visual/typography.tokens.json`
       "body": {"size": "18pt", "weight": 400},
       "caption": {"size": "12pt", "weight": 400}
     }
+  }
+}
+```
+
+#### 5.3.1 Typeface Contexts
+
+*Added in 1.1.0. Optional.*
+
+A `font_family` entry MAY carry `contexts` — where the typeface is used (`digital`, `print`, `correspondence`, `forms`, `signage`, `ceremonial`, or custom values) — and `rationale`, the reason the brand book gives for the choice.
+`usage` keeps its 1.0 meaning.
+
+```json
+{
+  "body": {
+    "$value": "Times New Roman",
+    "$type": "fontFamily",
+    "contexts": ["correspondence", "forms", "print"],
+    "rationale": "Widely available; proven legibility",
+    "$source": {"title": "Brand Guidelines", "page": 32}
   }
 }
 ```
@@ -671,6 +794,35 @@ File: `assets/logos/manifest.json`
   }
 }
 ```
+
+### 7.1.1 External and Restricted Assets
+
+*Added in 1.1.0. Optional.*
+
+Some marks may not be copied into a brand system: official symbols, licensed marks, or assets the owner publishes only from its own site.
+An asset entry MAY then use `external` instead of `file`:
+
+```json
+{
+  "emblem": {
+    "external": {
+      "href": "https://example.org/official-emblem",
+      "owner": "Example Authority",
+      "rights": "reference_only",
+      "note": "Use only the files published by the owner"
+    },
+    "variants": {
+      "full": {"minimum_size": {"print_mm": 36}},
+      "simplified": {"minimum_size": {"print_mm": 18}}
+    },
+    "$source": {"title": "Brand Guidelines", "page": 22}
+  }
+}
+```
+
+`rights`: `reference_only` (link, do not copy), `licensed` (copy under the stated licence), `open`.
+Agents MUST NOT embed or redraw an asset marked `reference_only`; they link to `href`.
+`minimum_size` MAY be an object with `print_mm` and `digital_px` per variant; the 1.0 string form remains valid.
 
 ### 7.2 Photography Guidelines
 
@@ -1172,6 +1324,12 @@ All internal references MUST resolve:
 - File paths in manifest MUST exist
 - Token references (e.g., `{color.brand.primary}`) MUST resolve
 - Template references MUST point to valid layouts
+
+### 11.2.1 Provenance Validation
+
+*Added in 1.1.0.*
+
+Validators SHOULD report: `$status` values outside `official`, `derived`, `proposed`; `derived` or `proposed` values without `$derived_from`; `member` brands without `parent.manifest`; `external` assets without `href`.
 
 ### 11.3 Constraint Validation
 
